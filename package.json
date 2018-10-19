@@ -1,0 +1,26 @@
+{
+    "name": "twee2-tw2-syntax",
+    "displayName": "Twee2 tw2 Syntax",
+    "description": "Twee source code syntax highlighting for VS Code.",
+    "version": "0.0.1",
+    "publisher": "dustin-woods",
+    "engines": {
+        "vscode": "^1.28.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "twee",
+            "aliases": ["Twee", "twee"],
+            "extensions": ["tw","tw2"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "twee",
+            "scopeName": "text.twee",
+            "path": "./syntaxes/twee.tmLanguage"
+        }]
+    }
+}
