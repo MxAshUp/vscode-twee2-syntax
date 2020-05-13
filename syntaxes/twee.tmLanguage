@@ -5,6 +5,8 @@
 	<key>fileTypes</key>
 	<array>
 		<string>tw</string>
+		<string>twee</string>
+		<string>tw2</string>
 	</array>
 	<key>name</key>
 	<string>Twee</string>
@@ -43,6 +45,8 @@
 				</dict>
 			</array>
 		</dict>
+
+		<!-- stylesheet passages -->
 		<dict>
 			<key>begin</key>
 			<string>(^::)(.+)(\[)(stylesheet)(\])</string>
@@ -88,6 +92,8 @@
 				</dict>
 			</array>
 		</dict>
+
+		<!-- script passages -->
 		<dict>
 			<key>begin</key>
 			<string>(^::)(.+)(\[)(script)(\])</string>
@@ -133,6 +139,8 @@
 				</dict>
 			</array>
 		</dict>
+
+		<!-- special passages -->
 		<dict>
 			<key>captures</key>
 			<dict>
@@ -168,13 +176,15 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(^::)\s*((Start|StoryTitle|StorySubtitle|StoryAuthor|StoryMenu)|([^\[]*))\s*((\[)([^\]]*)(\]))*</string>
+			<string>(^::)\s*((Start|StoryTitle|StorySubtitle|StoryAuthor|StoryBanner|StoryCaption|StoryDisplayTitle|StoryInit|StoryInterface|StorySettings|StoryMenu|PassageHeader|PassageFooter|PassageDone|PassageReady)|([^\[]*))\s*((\[)([^\]]*)(\]))*</string>
 			<key>name</key>
 			<string>meta.passage.twee</string>
 		</dict>
+
+		<!-- &lt;&lt;macros&gt;&gt; -->
 		<dict>
 			<key>begin</key>
-			<string>(&lt;&lt;)</string>
+			<string>(&lt;&lt;/?)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -183,6 +193,7 @@
 					<string>comment.block.punctuation.definition.function.begin.twee</string>
 				</dict>
 			</dict>
+
 			<key>end</key>
 			<string>(&gt;&gt;)</string>
 			<key>endCaptures</key>
@@ -199,16 +210,28 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(back|choice|display|actions|pop|print|set|if|else|endif|remember|silently|endsilently|mask)</string>
+					<string>(capture|set|unset|script|run|=|-|include|nobr|print|silently|widget|if|else|elseif|for|break|continue|switch|case|default|goto|repeat|stop|timed|next|button|checkbox|cycle|link|linkappend|linkreplace|listbox|radiobutton|textarea|textbox|actions|back|choice|return|addclass|append|copy|prepend|remove|replace|toggleclass|audio|cacheaudio|createaudiogroup|createplaylist|playlist|masteraudio|removeplaylist|waitforaudio)\b</string>
 					<key>name</key>
 					<string>keyword.control.twee</string>
 				</dict>
+
+				<!-- builtin sugarcube functions -->
 				<dict>
 					<key>match</key>
-					<string>\$\b([A-Za-z_][A-Za-z0-9_]*)\b</string>
+					<string>(\/?)(clone|either|forget|hasVisited|lastVisited|importScripts|importStyles|memorize|passage|previous|random|randomFloat|recall|setPageElement|tags|temporary|time|turns|variables|visited|visitedTags)\b</string>
+					<key>name</key>
+					<string>constant.language.twee</string>
+				</dict>
+
+				<!-- variables -->
+				<dict>
+					<key>match</key>
+					<string>(_|\$)([A-Za-z_][A-Za-z0-9_]*)\b</string>
 					<key>name</key>
 					<string>variable.parameter.twee</string>
 				</dict>
+
+				<!-- comparison operators -->
 				<dict>
 					<key>match</key>
 					<string>\b(eq|neq|gt|gte|lt|lte|and|or|not)\b</string>
@@ -226,6 +249,12 @@
 					<string>("[^"]*")</string>
 					<key>name</key>
 					<string>string.quoted.double.twee</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(`[^`]*`)</string>
+					<key>name</key>
+					<string>string.quoted.ticks.twee</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -247,15 +276,9 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\btrue\b</string>
+					<string>\b(true|false)\b</string>
 					<key>name</key>
 					<string>constant.language.boolean.true.js</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\bfalse\b</string>
-					<key>name</key>
-					<string>constant.language.boolean.false.js</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -271,6 +294,8 @@
 				</dict>
 			</array>
 		</dict>
+
+		<!-- [[]] links support -->
 		<dict>
 			<key>begin</key>
 			<string>(\[\[)</string>
@@ -317,6 +342,8 @@
 				</dict>
 			</array>
 		</dict>
+
+		<!-- [img[Image]] support -->
 		<dict>
 			<key>begin</key>
 			<string>(\[)(img)(\[)</string>
@@ -362,9 +389,11 @@
 				</dict>
 			</array>
 		</dict>
+
+		<!-- comments -->
 		<dict>
 			<key>begin</key>
-			<string>(/%)</string>
+			<string>(/%|&lt;\!--)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -376,7 +405,7 @@
 			<key>contentName</key>
 			<string>comment.block.twee</string>
 			<key>end</key>
-			<string>(%/)</string>
+			<string>(%/|--&gt;)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
