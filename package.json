@@ -2,7 +2,7 @@
     "name": "twee2-tw2-syntax",
     "displayName": "Twee2 tw2 Syntax",
     "description": "Twee source code syntax highlighting for VS Code.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "publisher": "dustin-woods",
     "engines": {
         "vscode": "^1.28.0"
