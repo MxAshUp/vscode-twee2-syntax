@@ -20,7 +20,8 @@
                 ],
                 "extensions": [
                     "tw",
-                    "tw2"
+                    "tw2",
+                    "twee"
                 ],
                 "configuration": "./language-configuration.json"
             }
