@@ -393,7 +393,7 @@
 		<!-- comments -->
 		<dict>
 			<key>begin</key>
-			<string>(/%|&lt;\!--)</string>
+			<string>(/%|&lt;\!--|/&lt;*)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -405,7 +405,7 @@
 			<key>contentName</key>
 			<string>comment.block.twee</string>
 			<key>end</key>
-			<string>(%/|--&gt;)</string>
+			<string>(%/|--&gt;|&lt;*/)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
